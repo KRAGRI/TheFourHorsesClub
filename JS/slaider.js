@@ -24,6 +24,7 @@ function showSlide() {
     sliderImages.forEach((item) => (item.style.width = sliderWidth + "px"));
   } else {
     sliderImages.forEach((item) => (item.style.width = null));
+    sliderLine.style.width = null;
   }
 
   rollSlider();
@@ -60,7 +61,11 @@ function prevSlide() {
 
 // Задает шаг перемещения слайдов
 function rollSlider() {
-  sliderLine.style.transform = `translateX(${-sliderCount * sliderWidth}px)`;
+  if (window.innerWidth < 700) {
+    sliderLine.style.transform = `translateX(${-sliderCount * sliderWidth}px)`;
+  } else {
+    sliderLine.style.transform = null;
+  }
 }
 
 // Указывает как слайд по счету активен

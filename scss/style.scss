@@ -438,6 +438,10 @@ h1 {
     color: #313131;
     margin-bottom: 60px;
 
+    br {
+      display: none;
+    }
+
     span {
       font-weight: 700;
       color: #f54932;
@@ -450,6 +454,10 @@ h1 {
     font-size: 20px;
     line-height: 120%;
     color: #3057a2;
+
+    br {
+      display: none;
+    }
   }
 }
 
@@ -574,6 +582,20 @@ h1 {
     font-size: 20px;
     line-height: 120%;
     color: #313131;
+    position: relative;
+    p {
+      position: relative;
+      z-index: 10;
+    }
+    .slider__slide__path_to_image {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      mix-blend-mode: color-burn;
+      z-index: 5;
+    }
     span {
       position: absolute;
       top: 20px;
@@ -590,11 +612,16 @@ h1 {
       font-size: 20px;
       line-height: 120%;
       color: #313131;
+      z-index: 10;
     }
     &:first-child {
       grid-area: 1 / 1 / 2 / 3;
       display: flex;
       justify-content: space-between;
+      .slider__slide__path_to_image {
+        display: none;
+      }
+
       div {
         width: 394px;
         background: url(../IMAGE/cooper-union.png);
@@ -604,6 +631,15 @@ h1 {
         padding-left: 72px;
         padding-right: 20px;
         position: relative;
+        img {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          mix-blend-mode: color-burn;
+          z-index: 5;
+        }
       }
     }
 
@@ -621,6 +657,9 @@ h1 {
       grid-area: 2 / 1 / 3 / 3;
       display: flex;
       justify-content: space-between;
+      .slider__slide__path_to_image {
+        display: none;
+      }
       div {
         width: 394px;
         background: url(../IMAGE/cooper-union.png);
@@ -630,6 +669,15 @@ h1 {
         padding-left: 72px;
         padding-right: 20px;
         position: relative;
+        img {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          mix-blend-mode: color-burn;
+          z-index: 5;
+        }
       }
     }
 
@@ -642,6 +690,10 @@ h1 {
       padding-left: 72px;
       padding-right: 20px;
       position: relative;
+
+      br {
+        display: none;
+      }
     }
 
     &:last-child {
@@ -654,12 +706,76 @@ h1 {
       padding-left: 72px;
       padding-right: 290px;
       position: relative;
+
+      br {
+        display: none;
+        &:nth-child(2) {
+          display: block;
+        }
+      }
     }
   }
 }
 
 .slider__wrapper {
   display: none;
+  align-items: center;
+  width: 178px;
+  height: 36px;
+  margin: 0 auto;
+  margin-top: 28px;
+
+  .slider__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background: #d9d9d9;
+    margin-left: 6px;
+
+    &:last-child {
+      margin-left: 0;
+    }
+  }
+
+  .active-dot {
+    background: #313131;
+  }
+
+  button {
+    width: 36px;
+    height: 36px;
+    background: #313131;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    padding-left: 11px;
+    transition: background 0.3s;
+
+    &:hover {
+      background: #fbce51;
+    }
+
+    &:disabled {
+      opacity: 0.2;
+    }
+
+    &:disabled:hover {
+      background: #313131;
+    }
+
+    img {
+      width: 10px;
+      height: 18px;
+    }
+  }
+  .slider__btn-prev {
+    margin-right: 16px;
+  }
+
+  .slider__btn-next {
+    margin-left: 16px;
+    transform: rotate(180deg);
+  }
 }
 
 .participant {
@@ -738,6 +854,7 @@ h1 {
   gap: 20px;
   scroll-behavior: smooth;
   scrollbar-width: none;
+  overflow-x: hidden;
 }
 .carousel::-webkit-scrollbar {
   display: none;
@@ -822,6 +939,10 @@ footer {
     line-height: 120%;
     color: #313131;
     opacity: 0.6;
+  }
+
+  br {
+    display: none;
   }
 }
 
@@ -918,12 +1039,34 @@ footer {
     font-size: 20px;
   }
 
-  .slider__line {
-    grid-template-columns: 440px 440px;
-    grid-template-rows: 112px 112px 112px 112px 136px;
+  .support {
+    justify-content: center;
+  }
+
+  .support__top {
+    h2 {
+      width: 470px;
+    }
+  }
+
+  .support__left {
+    margin-bottom: 40px;
+  }
+
+  .support__rigth {
+    width: 660px;
+  }
+
+  .slider {
     &::before {
       right: 10px;
     }
+  }
+
+  .slider__line {
+    grid-template-columns: 440px 440px;
+    grid-template-rows: 112px 112px 112px 112px 136px;
+
     .slider__slide {
       &:first-child {
         grid-area: 1 / 1 / 3 / 2;
@@ -967,11 +1110,26 @@ footer {
       }
     }
   }
+
+  footer {
+    br {
+      display: block;
+
+      &:first-child,
+      &:nth-child(3),
+      &:last-child {
+        display: none;
+      }
+    }
+  }
 }
 
 @media (max-width: 929px) {
-  .participant__top h2 {
-    font-size: 46px;
+  .participant__top {
+    height: auto;
+    h2 {
+      font-size: 46px;
+    }
   }
 
   .wrapper .carousel {
@@ -1088,6 +1246,41 @@ footer {
     font-size: 16px;
   }
 
+  .support {
+    margin-bottom: 150px;
+  }
+
+  .support__top {
+    position: relative;
+    height: auto;
+    h2 {
+      font-size: 32px;
+      width: 100%;
+      text-align: center;
+
+      span:first-child {
+        display: block;
+        margin-bottom: 300px;
+        height: 130px;
+      }
+    }
+
+    img {
+      position: absolute;
+      top: 155px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  .support__rigth {
+    width: 100%;
+
+    h2 {
+      font-size: 32px;
+      width: 600px;
+    }
+  }
+
   .stages {
     margin-bottom: 150px;
 
@@ -1104,16 +1297,19 @@ footer {
       }
     }
   }
-
-  .slider__line {
-    grid-template-columns: 328px 328px;
-    grid-template-rows: 132px 152px 132px 132px 200px;
-    gap: 14px;
+  .slider {
     &::before {
       width: 335px;
       height: 182px;
       right: -20px;
     }
+  }
+
+  .slider__line {
+    grid-template-columns: 328px 328px;
+    grid-template-rows: 132px 152px 132px 132px 200px;
+    gap: 14px;
+
     .slider__slide {
       &:first-child {
         gap: 14px;
@@ -1122,7 +1318,7 @@ footer {
           height: 132px;
           padding-right: 20px;
 
-          &:last-child {
+          &:nth-child(2) {
             height: 152px;
           }
         }
@@ -1150,9 +1346,48 @@ footer {
       }
     }
   }
+
+  footer {
+    br {
+      &:first-child,
+      &:nth-child(2),
+      &:last-child {
+        display: none;
+      }
+    }
+  }
 }
 
 @media (max-width: 699px) {
+  .participant {
+    margin-bottom: 176px;
+  }
+
+  .participant__top {
+    position: relative;
+    height: auto;
+    h2 {
+      font-size: 45px;
+    }
+    .participant__btn {
+      position: absolute;
+      bottom: -598px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    button {
+      width: 36px;
+      height: 36px;
+      padding-left: 11px;
+
+      img {
+        width: 10px;
+        height: 18px;
+      }
+    }
+  }
+
   .wrapper .carousel {
     grid-auto-columns: 100%;
   }
@@ -1186,9 +1421,160 @@ footer {
     left: 160px;
   }
 
+  .support {
+    margin-top: 48px;
+    margin-bottom: 120px;
+  }
+
+  .support__top {
+    margin-bottom: 34px;
+
+    h2 {
+      text-align: left;
+
+      span:first-child {
+        height: auto;
+      }
+
+      span:nth-child(2) {
+        display: block;
+        width: 350px;
+      }
+    }
+
+    img {
+      top: 197px;
+    }
+  }
+
+  .support__left {
+    border: none;
+    width: 335px;
+    height: 402px;
+    margin-bottom: 24px;
+
+    .cooper-union {
+      top: 47px;
+      left: 15px;
+      width: 309px;
+      height: 286px;
+    }
+
+    .money {
+      width: 85px;
+      height: 170px;
+      top: 36px;
+    }
+    .explosion__big {
+      width: 375px;
+      height: 244px;
+      top: 0;
+      left: -20px;
+    }
+
+    .human {
+      width: 239px;
+      height: 240px;
+      top: 82px;
+      left: 53px;
+    }
+
+    .arm {
+      width: 123px;
+      height: 166px;
+      right: 35px;
+      bottom: -38px;
+    }
+
+    .explosion__small {
+      width: 174px;
+      height: 152px;
+      left: -11px;
+      bottom: 18px;
+    }
+
+    .horse_black {
+      width: 61px;
+      height: 105px;
+      left: 69px;
+      bottom: 18px;
+    }
+  }
+
+  .support__rigth {
+    width: 100%;
+    height: auto;
+
+    h2 {
+      margin-bottom: 44px;
+      width: 100%;
+
+      br {
+        display: block;
+      }
+    }
+
+    p {
+      font-size: 18px;
+
+      br {
+        display: block;
+      }
+    }
+  }
+
+  .support__rigth__table {
+    margin-bottom: 40px;
+    height: auto;
+
+    &::after {
+      display: none;
+    }
+
+    div {
+      height: 76px;
+      margin-bottom: 16px;
+      gap: 12px;
+      flex-direction: column;
+
+      &:nth-child(4) {
+        flex-direction: row;
+        height: 40px;
+
+        span {
+          width: auto;
+        }
+      }
+
+      &:nth-child(5) {
+        margin-bottom: 0;
+        height: 60px;
+        border: none;
+      }
+    }
+  }
+
   .stages {
     h2 {
       margin-bottom: 148px;
+      font-size: 44px;
+    }
+  }
+
+  .slider {
+    &::before {
+      width: 335px;
+      height: 182px;
+      right: 50%;
+      bottom: 246px;
+      background: url(../IMAGE/plane-small.png);
+      transform: translateX(50%);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .slaider__over {
+      overflow: hidden;
     }
   }
 
@@ -1199,11 +1585,7 @@ footer {
     gap: 0;
     width: 100%;
     height: 300px;
-    &::before {
-      width: 335px;
-      height: 182px;
-      right: -20px;
-    }
+
     .slider__slide {
       width: 100%;
       height: 300px;
@@ -1219,12 +1601,20 @@ footer {
       }
       &:first-child {
         gap: 28px;
+        display: block;
+        .slider__slide__path_to_image {
+          display: block;
+        }
         div {
           width: 100%;
           height: auto;
           padding-top: 0;
           padding-right: 0;
           background: none;
+          margin-bottom: 28px;
+          img {
+            display: none;
+          }
 
           span {
             top: 0;
@@ -1241,13 +1631,28 @@ footer {
       }
 
       &:nth-child(3) {
-        gap: 14px;
+        display: block;
+        .slider__slide__path_to_image {
+          display: block;
+        }
         div {
-          width: 328px;
-          height: 132px;
+          width: 100%;
+          height: auto;
+          padding-top: 0;
           padding-right: 0;
+          background: none;
+          margin-bottom: 28px;
+
+          img {
+            display: none;
+          }
+
           span {
             top: 0;
+          }
+
+          &:last-child {
+            height: auto;
           }
         }
       }
@@ -1259,6 +1664,21 @@ footer {
       &:last-child {
         padding-top: 62px;
         padding-right: 20px;
+
+        br {
+          display: block;
+        }
+      }
+    }
+  }
+  .slider__wrapper {
+    display: flex;
+  }
+
+  footer {
+    br {
+      &:nth-child(3) {
+        display: block;
       }
     }
   }
@@ -1301,6 +1721,100 @@ footer {
 
       br {
         display: none;
+      }
+    }
+  }
+
+  .support__top {
+    h2 {
+      font-size: 28px;
+
+      span:first-child {
+        margin-bottom: 260px;
+      }
+
+      span:nth-child(2) {
+        width: 100%;
+      }
+    }
+
+    img {
+      width: 335px;
+      height: 212px;
+      top: 175px;
+    }
+  }
+
+  .support__rigth {
+    h2 {
+      font-size: 28px;
+    }
+  }
+
+  .stages {
+    margin-bottom: 120px;
+
+    h2 {
+      font-size: 36px;
+      line-height: 110%;
+
+      span {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .slider__line {
+    .slider__slide {
+      font-size: 18px;
+      line-height: 120%;
+
+      &:nth-child(4) {
+        padding-top: 62px;
+
+        br {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .participant__top {
+    margin-bottom: 40px;
+    h2 {
+      font-size: 36px;
+      line-height: 110%;
+    }
+    .participant__btn {
+      bottom: -504px;
+    }
+  }
+
+  .wrapper .carousel {
+    grid-auto-columns: 335px;
+  }
+  .carousel .card {
+    height: 388px;
+  }
+  .carousel .card .img {
+    width: 244px;
+    height: 244px;
+  }
+  .card .img img {
+    width: 223px;
+    height: 254px;
+  }
+  .carousel .card h3 {
+    margin-bottom: 8px;
+  }
+
+  footer {
+    br {
+      &:first-child,
+      &:nth-child(2),
+      &:nth-child(3),
+      &:last-child {
+        display: block;
       }
     }
   }
